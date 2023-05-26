@@ -1,0 +1,61 @@
+---
+title: Studio API
+description: 'Where voices are brought to life'
+---
+
+<Info>API access via tokens are currently only available to users with a paid plan</Info>
+
+## Quick start
+
+Generate an api token by going to https://studio.themetavoice.xyz. From the account dropdown menu, open the "Developers" modal and generate your first token.
+
+You can now use it like this:
+
+```py
+import requests
+
+# use your own token here
+api_token = "eyJhbG...t0p34Lc"
+auth_header = { "Authorization": "Bearer " + api_token }
+
+# see how many seconds of conversions you have left.
+time_left_seconds = requests.get(
+  "https://studio-api.themetavoice.xyz/api/time-left"
+  headers=auth_header
+).text
+
+if time_left_seconds.status_code != 200:
+  # likely an invalid token
+  raise Exception("error": time_left_seconds.text)
+
+print("converting a local file to eva...")
+
+input_file = open("/home/user/Downloads/recording.ogg", "rb")
+input_data = input_file.read()
+res = requests.post(
+  "https://studio-api.themetavoice.xyz/api/convert-voice",
+  headers={
+    **auth_header,
+    # you can use any type we support via the web UI
+    "Content-Type": "audio/ogg",
+    "Content-Length": str(len(input_data)),
+    # lowercase name of any curated or experimental voice
+    "X-Target": "eva",
+  }, 
+  data=input_data,
+)
+
+if res.status_code != 200:
+    raise Exception("error: " + res.text)
+
+print("converted succesfully!")
+
+# save result to file
+output_file = open("local-to-eva.wav", "wb")
+output_file.write(res.content)
+
+# it is now a regular wav file!
+```
+
+That's the basics of the API, you're good to go!
+
