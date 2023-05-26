@@ -8,8 +8,8 @@
   "favicon": "/favicon.ico",
   "colors": {
     "primary": "#0069ED",
-    "light": "#4D9CFF",
-    "dark": "#0050B4"
+    "light": "#A33B64",
+    "dark": "#A33B64"
   },
   "topbarLinks": [
     {
@@ -26,5 +26,10 @@
         "pages/targets"
       ]
     }
-  ]
+  ],
+  "modeToggle": {
+    "default": "dark",
+    "isHidden": true
+  }
+
 }
