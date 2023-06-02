@@ -20,7 +20,7 @@ auth_header = { "Authorization": "Bearer " + api_token }
 
 # see how many seconds of conversions you have left.
 time_left_seconds = requests.get(
-  "https://studio-api.themetavoice.xyz/api/time-left"<
+  "https://studio-api.themetavoice.xyz/api/time-left",
   headers=auth_header
 )
 
