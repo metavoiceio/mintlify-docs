@@ -20,24 +20,24 @@ auth_header = { "Authorization": "Bearer " + api_token }
 
 # see how many seconds of conversions you have left.
 time_left_seconds = requests.get(
-  "https://studio-api.themetavoice.xyz/api/time-left"
+  "https://studio-api.themetavoice.xyz/api/time-left"<
   headers=auth_header
-).text
+)
 
 if time_left_seconds.status_code != 200:
   # likely an invalid token
-  raise Exception("error": time_left_seconds.text)
+  raise Exception("error", time_left_seconds.text)
 
 print("converting a local file to eva...")
 
-input_file = open("/home/user/Downloads/recording.ogg", "rb")
+input_file = open("/home/user/Downloads/audio.mp3", "rb")
 input_data = input_file.read()
 res = requests.post(
   "https://studio-api.themetavoice.xyz/api/convert-voice",
   headers={
     **auth_header,
     # you can use any type we support via the web UI
-    "Content-Type": "audio/ogg",
+    "Content-Type": "audio/mp3",
     "Content-Length": str(len(input_data)),
     # lowercase name of any curated or experimental voice
     "X-Target": "eva",
@@ -46,7 +46,7 @@ res = requests.post(
 )
 
 if res.status_code != 200:
-    raise Exception("error: " + res.text)
+    raise Exception("error", res.text)
 
 print("converted succesfully!")
 
