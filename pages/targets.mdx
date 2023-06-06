@@ -5,19 +5,20 @@ description: "Information on targets"
 
 ### What are targets?
 
-They refer to the voice card you would use in the web UI. Common ones are `"eva"` and `"zeus"`.
+They refer to the voice id to use for conversion. Common ones are `"eva"` and `"zeus"`.
 
 ### How do I use them?
 
-For curated and experimental targets, granted you have access to them, you simply look at the name of the target, lowercase it, and use it as the value for the `X-Target` header.
+You can get the voice id by clicking on the clipboard icon at the top right of any card, then use that as the `X-Target: <paste>` header, e.g. `X-Target: eva`
 
-E.g. if you want to convert using the "Zeus" voice, you lowercase it to `"zeus"`, and set it in the header: `X-Target: zeus`
+You can find the copy voice id button here:
+![Button on the top right of audio cards to copy the id of a voice](/images/copy-voice-id-button.png)
 
-### Which voices are available to me?
+<Info>
+Don't see the clipboard icon?
 
-Any of the ones you are able to convert when signed into the web UI.
+Make sure the "Show copy id button" checkbox is ticked in the "Developers" menu, accessible in the dropdown on the top right of the page:
 
-### What about voices that are not curated or experimental?
-
-If you have access to other voices, there is a way to convert them. In general, the easiest option is to open the network tab in your browser's devtools, performing the conversion using the card you're looking for, and checking the headers of the relevant `POST` request
-
+![Dropdown containing the Developers button](/images/profile-dropdown.png)
+![Modal for developers, contains the setting to show the copy id button](/images/for-developers-modal.png)
+</Info>
